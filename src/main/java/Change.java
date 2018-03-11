@@ -1,22 +1,7 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Change  {
-
-    public ArrayList<String> createString(String source) throws IOException {
-
-        Scanner input = new Scanner(source);
-        Path path = Paths.get(input.nextLine());
-
-        ArrayList<String> inputLines = (ArrayList<String>) Files.readAllLines(path);
-
-        return inputLines;
-    }
 
     public ArrayList<User> createList(ArrayList<String> list) {
 
