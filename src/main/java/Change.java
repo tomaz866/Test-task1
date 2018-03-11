@@ -6,21 +6,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Nowa {
+public class Change  {
 
-    public static void main(String[] args) throws IOException {
-
-        String source = "C:\\Users\\Admin\\Desktop\\imie.txt";
+    public ArrayList<String> createString(String source) throws IOException {
 
         Scanner input = new Scanner(source);
         Path path = Paths.get(input.nextLine());
-        LocalDate today = LocalDate.now();
-        User oldest = null;
 
         ArrayList<String> inputLines = (ArrayList<String>) Files.readAllLines(path);
 
+        return inputLines;
+    }
+
+    public ArrayList<User> createList(ArrayList<String> list) {
+
+        LocalDate today = LocalDate.now();
         ArrayList<User> users = new ArrayList<>();
-        for (String line : inputLines) {
+
+        for (String line : list) {
 
             String[] lines = line.split(",");
 
@@ -30,13 +33,13 @@ public class Nowa {
 
             long age = today.getYear() - bdate.getYear();
 
-            if(cell == 4) {
-            User user = new User(
-                    lines[0],
-                    lines[1],
-                    age,
-                    lines[3]
-            );
+            if (cell == 4) {
+                User user = new User(
+                        lines[0],
+                        lines[1],
+                        age,
+                        lines[3]
+                );
 
                 users.add(user);
 
@@ -50,26 +53,6 @@ public class Nowa {
                 users.add(user);
             }
         }
-
-        for(User user:users) {
-
-            if(user.getPhone() != null) {
-
-                if (oldest == null) {
-                    oldest = user;
-                }
-
-                if (user.getAge() > oldest.getAge()) {
-                    oldest = user;
-                }
-            }
-        }
-
-        System.out.println(oldest);
-
-        System.out.println("Liczba użytkowników: " + users.size());
+        return users;
     }
 }
-
-
-
