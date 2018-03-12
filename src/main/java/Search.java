@@ -1,24 +1,16 @@
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 public class Search {
 
     public User searchOldest(ArrayList<User> list) {
 
-        User oldest = null;
+        User oldest = list.stream()
+                .filter(o -> o.getPhone() != null)
+                .max(Comparator.comparing(User::getAge))
+                .orElseThrow(NoSuchElementException::new);
 
-        for(User user:list) {
-
-            if (user.getPhone() != null) {
-
-                if (oldest == null) {
-                    oldest = user;
-                }
-
-                if (user.getAge() > oldest.getAge()) {
-                    oldest = user;
-                }
-            }
-        }
         return oldest;
     }
 }

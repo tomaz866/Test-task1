@@ -16,11 +16,10 @@ public class Main {
         ArrayList<String> inputLines = (ArrayList<String>) Files.readAllLines(path);
 
         Change change = new Change();
-        Search user = new Search();
+        Search search = new Search();
 
         ArrayList<User> userList = change.createList(inputLines);
-
-        User oldest = user.searchOldest(userList);
+        User oldest = search.searchOldest(userList);
 
         System.out.println("Liczba użytkowników: " + userList.size());
         System.out.println(oldest);
